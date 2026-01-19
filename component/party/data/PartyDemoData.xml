@@ -1,0 +1,32 @@
+<entity-facade-xml type="demo">
+
+    <!--    A Party of type PERSON
+A matching Person record
+A Party of type PARTY_GROUP
+A matching PartyGroup record
+A ContactMech record for email
+A ContactMech record for phone
+PartyContactMech link records-->
+
+
+    <!--     A Party of type PERSON-->
+    <party.Party partyId="P1" partyTypeEnumId="PERSON" createdDate="2026-01-17T00:00:00"/>
+    <!--A matching Person record-->
+    <party.Person partyId="P1" firstName="Shivani" lastName="Bafna" dateOfBirth="2002-06-22"/>
+    <!--  Party of type PARTY_GROUP -->
+    <party.Party partyId="G1" partyTypeEnumId="PARTY_GROUP" createdDate="2026-01-17T00:00:00"/>
+    <!-- Matching PartyGroup record -->
+    <party.PartyGroup partyId="G1" groupName="Hotwax" description="We are intern"/>
+
+    <!--  A ContactMech record for email-->
+    <party.ContactMech contactMechId="C1" contactMechTypeId="EMAIL" infoString="bafnashivani2206@example.com" createdDate="2026-01-17T00:00:00"/>
+    <!--    A ContactMech record for phone-->
+    <party.ContactMech contactMechId="C2" contactMechTypeId="TELECOM_NUMBER" infoString="+919243438779" createdDate="2026-01-17T00:00:00"/>
+    <!--  PartyContactMech link records -->
+    <party.PartyContactMech partyId="P1" contactMechId="C1" fromDate="2026-01-17T00:00:00"/>
+    <party.PartyContactMech partyId="P1" contactMechId="C2" fromDate="2026-01-17T00:00:00"/>
+
+
+
+</entity-facade-xml>
+
