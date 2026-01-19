@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/entity-definition-3.xsd">
+
+                             <!-- 1. Party -->
+
+    <entity entity-name="Party" package="party" cache="true">
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="partyTypeEnumId" type="id"/>
+        <field name="createdDate" type="date-time"/>
+
+        <relationship type="one"
+                      related="moqui.basic.Enumeration"
+                      title="PartyType">
+            <key-map field-name="partyTypeEnumId"/>
+        </relationship>
+
+        <seed-data>
+            <moqui.basic.EnumerationType
+                    enumTypeId="PartyType"
+                    description="Party Type"/>
+
+            <moqui.basic.Enumeration
+                    enumId="PERSON"
+                    enumTypeId="PartyType"
+                    description="Person"/>
+
+            <moqui.basic.Enumeration
+                    enumId="PARTY_GROUP"
+                    enumTypeId="PartyType"
+                    description="Party Group"/>
+        </seed-data>
+    </entity>
+
+
+
+
+    <!-- 2. Person -->
+
+    <entity entity-name="Person" package="party" cache="true">
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="firstName" type="text-medium"/>
+        <field name="lastName" type="text-medium"/>
+        <field name="dateOfBirth" type="date"/>
+
+        <relationship type="one" related="party.Party" title="Party">
+            <key-map field-name="partyId"/>
+        </relationship>
+    </entity>
+
+
+
+
+    <!-- 3. PartyGroup -->
+
+    <entity entity-name="PartyGroup" package="party" cache="true">
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="groupName" type="text-medium"/>
+        <field name="description" type="text-medium"/>
+
+        <relationship type="one" related="party.Party" title="Party">
+            <key-map field-name="partyId"/>
+        </relationship>
+    </entity>
+
+
+
+
+                 <!-- 4. ContactMech -->
+
+    <entity entity-name="ContactMech" package="party" cache="true">
+        <field name="contactMechId" type="id" is-pk="true"/>
+        <field name="contactMechTypeId" type="id"/>
+        <field name="infoString" type="text-medium"/>
+        <field name="createdDate" type="date-time"/>
+
+        <relationship type="one"
+                      related="moqui.basic.Enumeration"
+                      title="ContactMechType">
+            <key-map field-name="contactMechTypeId"/>
+        </relationship>
+
+        <seed-data>
+            <moqui.basic.EnumerationType
+                    enumTypeId="ContactMechType"
+                    description="Contact Mechanism Type"/>
+
+            <moqui.basic.Enumeration
+                    enumId="EMAIL"
+                    enumTypeId="ContactMechType"
+                    description="Email"/>
+
+            <moqui.basic.Enumeration
+                    enumId="TELECOM_NUMBER"
+                    enumTypeId="ContactMechType"
+                    description="Phone"/>
+
+            <moqui.basic.Enumeration
+                    enumId="POSTAL_ADDRESS"
+                    enumTypeId="ContactMechType"
+                    description="Postal Address"/>
+        </seed-data>
+    </entity>
+
+
+
+
+
+
+    <!-- 5. PartyContactMech -->
+
+    <entity entity-name="PartyContactMech" package="party" cache="true">
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="contactMechId" type="id" is-pk="true"/>
+        <field name="fromDate" type="date-time" is-pk="true"/>
+        <field name="thruDate" type="date-time"/>
+
+        <relationship type="one" related="party.Party" title="Party">
+            <key-map field-name="partyId"/>
+        </relationship>
+
+        <relationship type="one" related="party.ContactMech" title="ContactMech">
+            <key-map field-name="contactMechId"/>
+        </relationship>
+    </entity>
+
+</entities>
