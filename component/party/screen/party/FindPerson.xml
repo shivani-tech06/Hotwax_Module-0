@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-3.xsd"
+        require-authentication="anonymous-all">
+
+    <transition name="createPerson">
+        <service-call name="create#party.Person"/>
+        <default-response url="."/>
+    </transition>
+
+    <actions>
+        <entity-find entity-name="party.Person" list="personList">
+        </entity-find>
+    </actions>
+    <widgets>
+        <container-dialog id="CreatePersonDialog" button-text="Create Person">
+            <form-single name="CreatePerson" transition="createPerson">
+                <auto-fields-entity entity-name="party.Person" field-type="edit"/>
+                <field name="submitButton"><default-field title="Create"><submit/></default-field></field>
+            </form-single>
+        </container-dialog>
+
+        <form-list name="PersonList" list="personList" header-dialog="true" skip-form="true" >
+            <auto-fields-entity entity-name="party.Person" field-type="display"/>
+        </form-list>
+    </widgets>
+
+</screen>
+

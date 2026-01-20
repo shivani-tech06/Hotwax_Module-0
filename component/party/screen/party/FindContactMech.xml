@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-3.xsd"
+        require-authentication="anonymous-all">
+
+    <transition name="createContactMech">
+        <service-call name="create#party.ContactMech"/>
+        <default-response url="."/>
+    </transition>
+
+    <actions>
+        <entity-find entity-name="party.ContactMech" list="ContactMechList">
+        </entity-find>
+    </actions>
+    <widgets>
+
+
+        <container-dialog id="CreateContactMechDialog" button-text="Create ContactMech">
+            <form-single name="CreateContactMech" transition="createContactMech">
+                <auto-fields-entity entity-name="party.ContactMech" field-type="edit"/>
+                <field name="submitButton"><default-field title="Create"><submit/></default-field></field>
+            </form-single>
+        </container-dialog>
+
+        <form-list name="PersonList" list="personList" header-dialog="true" skip-form="true" >
+            <auto-fields-entity entity-name="party.Person" field-type="display"/>
+        </form-list>
+
+    </widgets>
+
+</screen>
+
