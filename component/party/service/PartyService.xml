@@ -23,7 +23,46 @@
         </out-parameters>
 
     </service>
+
+
+    <service verb="delete"
+             noun="Person"
+             type="entity-auto">
+
+        <in-parameters>
+            <parameter name="partyId" type="String" required="true"/>
+        </in-parameters>
+
+
+        <out-parameters>
+            <parameter name="responseMessage" type="String"/>
+        </out-parameters>
+
+
+    </service>
+
+
+
+
+    <service verb="update"
+             noun="Person">
+        <in-parameters>
+
+            <parameter name="partyId" type="String" required="true"/>
+            <parameter name="firstName" type="String"/>
+            <parameter name="lastName" type="String"/>
+            <parameter name="dateOfBirth" />
+        </in-parameters>
+
+        <out-parameters>
+            <parameter name="responseMessage" type="String"/>
+        </out-parameters>
+
+    </service>
+
 </services>
+
+
 
 
 

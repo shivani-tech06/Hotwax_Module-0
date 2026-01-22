@@ -4,10 +4,32 @@
           xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/rest-api-3.xsd"
 name="party" require-authentication="anonymous-all">
 
-    <resource name="person" require-authentication="anonymous-all">
-        <method type="post">
-            <service name="PartyService.create#Person"/>
-        </method>
-    </resource>
+
+
+
+
+        <resource name="Person" require-authentication="anonymous-all">
+<!--      create-->
+                <method type="post">
+                    <service name="PartyService.create#Person"/>
+                </method>
+<!--Retrive-->
+            <method type="get">
+                <entity name="party.Person" operation="list"/>
+
+            </method>
+<!--            delete-->
+            <method type="delete">
+                <service name="delete#party.Person"/>
+            </method>
+<!--update-->
+            <method type="put">
+                <service name="update#Person"/>
+            </method>
+
+
+        </resource>
+
+
 
 </resource>

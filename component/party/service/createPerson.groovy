@@ -15,6 +15,7 @@ if (!party) {
 }
 
 //Ensure the Person is created only if the Party exists
+//https://www.moqui.org/m/docs/framework/Logic+and+Services/Service+Implementation
 ec.service.sync()
         .name("create#party.Person")
         .parameters(context)
